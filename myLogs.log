@@ -505,3 +505,30 @@
   label: 'right meow!',
   timestamp: '2024-11-25 00:43:51'
 }
+{
+  meta: {
+    req: {
+      url: '/upload-center/upload-profile/674e0a9c199e380249888f7b',
+      headers: {
+        'user-agent': 'PostmanRuntime/7.43.0',
+        accept: '*/*',
+        'postman-token': '3222fef8-ba62-4b9c-af79-dc3d8dcca238',
+        host: 'localhost:5012',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-type': 'multipart/form-data; boundary=--------------------------342239762521328927303268',
+        'content-length': '108904'
+      },
+      method: 'POST',
+      httpVersion: '1.1',
+      originalUrl: '/upload-center/upload-profile/674e0a9c199e380249888f7b',
+      query: {}
+    },
+    res: { statusCode: 200 },
+    responseTime: 27
+  },
+  level: 'info',
+  message: 'POST /upload-center/upload-profile/674e0a9c199e380249888f7b 200 27ms',
+  label: 'right meow!',
+  timestamp: '2024-12-05 19:31:59'
+}

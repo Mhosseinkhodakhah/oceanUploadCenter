@@ -11,10 +11,10 @@ export default class controller {
         let uploadedData = req.files.images
         let filePathes: string[] = [];
         for (let i = 0; i < uploadedData.length; i++) {
-            let uploadPath = `./public/contents/${req.params.contentId}/` + uploadedData[i].name;
+            let uploadPath = `/home/oceanCdn/contents/${req.params.contentId}/` + uploadedData[i].name;
             try {
                 const upload = await uploadedData[i].mv(uploadPath)
-                filePathes.push(`${process.env.CDNADDRESS}/public/contents/${req.params.contentId}/` + uploadedData[i].name)
+                filePathes.push(`${process.env.CDNADDRESS}/content/${req.params.contentId}/` + uploadedData[i].name)
             } catch (error) {
                 console.log(error)
             }
@@ -24,5 +24,22 @@ export default class controller {
         } else {
             return next(new response(req, res, 'upload multiple files', 503, 'somethings went wrong', null))
         }
+    }
+
+
+    async uploadProfile(req: any, res: any, next: any) {
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return next(new response(req, res, 'upload multiple file', 400, 'no file where uploaded', null))
+        }
+        let uploadedData = req.files.profile;
+        let filePathe;
+        let uploadPath = `/home/oceanCdn/profile/${req.params.userId}/` + uploadedData.name;
+        try {
+            await uploadedData.mv(uploadPath)
+            filePathe = `${process.env.CDNADDRESS}/profile/${req.params.userId}/${uploadedData.name}`
+        } catch (error) {
+            console.log(error)
+        }
+        return next(new response(req, res, 'upload multiple files', 200, null, { pathes: filePathe }))
     }
 }

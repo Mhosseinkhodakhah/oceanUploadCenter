@@ -8,4 +8,6 @@ const uploadController = new controller()
 
 router.post('/upload-multi-photo/:contentId' , uploadController.uploadMultiPhoto)
 
-export default router;
+router.post('/upload-profile/:userId' , uploadController.uploadProfile)
+
+export default router;  

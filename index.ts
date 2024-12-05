@@ -96,4 +96,4 @@ app.use(fileUpload({
 }));
 // app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/upload-center', router)
+app.use('/app', router) 
