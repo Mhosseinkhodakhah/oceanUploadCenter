@@ -43,11 +43,13 @@ class controller {
                 return next(new responseService_1.response(req, res, 'upload multiple file', 400, 'no file where uploaded', null));
             }
             let uploadedData = req.files.profile;
+            console.log('upload profile data', uploadedData);
             let filePathe;
             let uploadPath = `/home/oceanCdn/profile/${req.params.userId}/` + uploadedData.name;
             try {
                 yield uploadedData.mv(uploadPath);
                 filePathe = `${process.env.CDNADDRESS}/profile/${req.params.userId}/${uploadedData.name}`;
+                console.log('file path', filePathe);
             }
             catch (error) {
                 console.log(error);

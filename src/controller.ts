@@ -31,12 +31,15 @@ export default class controller {
         if (!req.files || Object.keys(req.files).length === 0) {
             return next(new response(req, res, 'upload multiple file', 400, 'no file where uploaded', null))
         }
+
         let uploadedData = req.files.profile;
+        console.log('upload profile data' , uploadedData)
         let filePathe;
         let uploadPath = `/home/oceanCdn/profile/${req.params.userId}/` + uploadedData.name;
         try {
             await uploadedData.mv(uploadPath)
             filePathe = `${process.env.CDNADDRESS}/profile/${req.params.userId}/${uploadedData.name}`
+            console.log('file path' , filePathe)
         } catch (error) {
             console.log(error)
         }
