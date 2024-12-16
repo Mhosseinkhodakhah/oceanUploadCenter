@@ -14,7 +14,7 @@ export default class controller {
             let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
             try {
                 const upload = await uploadedData[i].mv(uploadPath)
-                filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name)
+                filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData[i].name)
             } catch (error) {
                 console.log(error)
             }
