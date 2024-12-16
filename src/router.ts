@@ -6,7 +6,7 @@ const router = Router();
 
 const uploadController = new controller()
 
-router.post('/upload-multi-photo/:contentId' , uploadController.uploadMultiPhoto)
+router.post('/upload-multi-photo' , uploadController.uploadMultiPhoto)
 
 router.post('/upload-profile/:userId' , uploadController.uploadProfile)
 

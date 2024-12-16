@@ -11,10 +11,10 @@ export default class controller {
         let uploadedData = req.files.images
         let filePathes: string[] = [];
         for (let i = 0; i < uploadedData.length; i++) {
-            let uploadPath = `/home/oceanCdn/contents/${req.params.contentId}/` + uploadedData[i].name;
+            let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
             try {
                 const upload = await uploadedData[i].mv(uploadPath)
-                filePathes.push(`${process.env.CDNADDRESS}/content/${req.params.contentId}/` + uploadedData[i].name)
+                filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name)
             } catch (error) {
                 console.log(error)
             }
