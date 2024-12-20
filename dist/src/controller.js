@@ -20,6 +20,7 @@ class controller {
             console.log('222', req.files);
             let uploadedData = req.files.images;
             let filePathes = [];
+            console.log('leng', uploadedData.length);
             for (let i = 0; i < uploadedData.length; i++) {
                 console.log('uploaded file is >>>>>>>', uploadedData[i].name);
                 let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
@@ -38,7 +39,7 @@ class controller {
             }
             else {
                 console.log('upload resault', filePathes);
-                return next(new responseService_1.response(req, res, 'upload multiple files', 503, 'somethings went wrong', null));
+                return next(new responseService_1.response(req, res, 'upload multiple files', 500, 'somethings went wrong', null));
             }
         });
     }
