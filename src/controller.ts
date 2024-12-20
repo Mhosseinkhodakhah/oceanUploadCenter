@@ -7,8 +7,11 @@ export default class controller {
         if (!req.files || Object.keys(req.files).length === 0) {
             return next(new response(req, res, 'upload multiple file', 400, 'no file where uploaded', null))
         }
-        console.log('111')
+        console.log('111' , req.files.images)
+        console.log('222' , req.files)
+
         let uploadedData = req.files.images
+        
         let filePathes: string[] = [];
         for (let i = 0; i < uploadedData.length; i++) {
             let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
