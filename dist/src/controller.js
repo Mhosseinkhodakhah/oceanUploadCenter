@@ -20,14 +20,28 @@ class controller {
             console.log('222', req.files);
             let uploadedData = req.files.images;
             let filePathes = [];
-            console.log('leng', uploadedData.length);
-            for (let i = 0; i < uploadedData.length; i++) {
-                console.log('uploaded file is >>>>>>>', uploadedData[i].name);
-                let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
+            if (uploadedData.length) {
+                for (let i = 0; i < uploadedData.length; i++) {
+                    console.log('uploaded file is >>>>>>>', uploadedData[i].name);
+                    let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
+                    try {
+                        const upload = yield uploadedData[i].mv(uploadPath);
+                        console.log('upload resault', upload);
+                        filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name);
+                        console.log('filePath', filePathes);
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
+            else {
+                console.log('uploaded file is >>>>>>>', uploadedData.name);
+                let uploadPath = `/home/oceanCdn/contents/` + uploadedData.name;
                 try {
-                    const upload = yield uploadedData[i].mv(uploadPath);
+                    const upload = yield uploadedData.mv(uploadPath);
                     console.log('upload resault', upload);
-                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name);
+                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData.name);
                     console.log('filePath', filePathes);
                 }
                 catch (error) {

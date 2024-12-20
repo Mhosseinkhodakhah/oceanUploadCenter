@@ -13,18 +13,30 @@ export default class controller {
         let uploadedData = req.files.images
         
         let filePathes: string[] = [];
-        console.log('leng' , uploadedData.length)
-        for (let i = 0; i < uploadedData.length; i++) {
-            console.log('uploaded file is >>>>>>>' , uploadedData[i].name)
-            let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
-            try {
-                const upload = await uploadedData[i].mv(uploadPath)
-                console.log('upload resault' , upload)
-                filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name)
-                console.log( 'filePath', filePathes)
-            } catch (error) {
-                console.log(error)
+        if (uploadedData.length){
+            for (let i = 0; i < uploadedData.length; i++) {
+                console.log('uploaded file is >>>>>>>' , uploadedData[i].name)
+                let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
+                try {
+                    const upload = await uploadedData[i].mv(uploadPath)
+                    console.log('upload resault' , upload)
+                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name)
+                    console.log( 'filePath', filePathes)
+                } catch (error) {
+                    console.log(error)
+                }
             }
+        }else{
+                console.log('uploaded file is >>>>>>>' , uploadedData.name)
+                let uploadPath = `/home/oceanCdn/contents/` + uploadedData.name;
+                try {
+                    const upload = await uploadedData.mv(uploadPath)
+                    console.log('upload resault' , upload)
+                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData.name)
+                    console.log( 'filePath', filePathes)
+                } catch (error) {
+                    console.log(error)
+                }
         }
         if (filePathes.length) {
             return next(new response(req, res, 'upload multiple files', 200, null, { pathes: filePathes }))
