@@ -11,10 +11,12 @@ export default class controller {
         let uploadedData = req.files.images
         let filePathes: string[] = [];
         for (let i = 0; i < uploadedData.length; i++) {
-            let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
+            let uploadPath = `/home/oceanCdn/contents/${req.params.contentId}/` + uploadedData[i].name;
             try {
                 const upload = await uploadedData[i].mv(uploadPath)
-                filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData[i].name)
+                console.log('upload resault' , upload)
+                filePathes.push(`${process.env.CDNADDRESS}/content/${req.params.contentId}/` + uploadedData[i].name)
+                console.log( 'filePath', filePathes)
             } catch (error) {
                 console.log(error)
             }
@@ -22,6 +24,7 @@ export default class controller {
         if (filePathes.length) {
             return next(new response(req, res, 'upload multiple files', 200, null, { pathes: filePathes }))
         } else {
+            console.log('upload resault' , filePathes)
             return next(new response(req, res, 'upload multiple files', 503, 'somethings went wrong', null))
         }
     }
