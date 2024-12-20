@@ -21,6 +21,7 @@ class controller {
             let uploadedData = req.files.images;
             let filePathes = [];
             for (let i = 0; i < uploadedData.length; i++) {
+                console.log('uploaded file is >>>>>>>', uploadedData[i].name);
                 let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
                 try {
                     const upload = yield uploadedData[i].mv(uploadPath);

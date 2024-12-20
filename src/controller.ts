@@ -14,6 +14,7 @@ export default class controller {
         
         let filePathes: string[] = [];
         for (let i = 0; i < uploadedData.length; i++) {
+            console.log('uploaded file is >>>>>>>' , uploadedData[i].name)
             let uploadPath = `/home/oceanCdn/contents/` + uploadedData[i].name;
             try {
                 const upload = await uploadedData[i].mv(uploadPath)
