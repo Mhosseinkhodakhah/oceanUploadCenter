@@ -27,7 +27,7 @@ class controller {
                     try {
                         const upload = yield uploadedData[i].mv(uploadPath);
                         console.log('upload resault', upload);
-                        filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name);
+                        filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData[i].name);
                         console.log('filePath', filePathes);
                     }
                     catch (error) {
@@ -41,7 +41,7 @@ class controller {
                 try {
                     const upload = yield uploadedData.mv(uploadPath);
                     console.log('upload resault', upload);
-                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData.name);
+                    filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData.name);
                     console.log('filePath', filePathes);
                 }
                 catch (error) {

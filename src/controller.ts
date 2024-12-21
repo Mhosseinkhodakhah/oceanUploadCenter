@@ -20,7 +20,7 @@ export default class controller {
                 try {
                     const upload = await uploadedData[i].mv(uploadPath)
                     console.log('upload resault' , upload)
-                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData[i].name)
+                    filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData[i].name)
                     console.log( 'filePath', filePathes)
                 } catch (error) {
                     console.log(error)
@@ -32,7 +32,7 @@ export default class controller {
                 try {
                     const upload = await uploadedData.mv(uploadPath)
                     console.log('upload resault' , upload)
-                    filePathes.push(`${process.env.CDNADDRESS}/content/` + uploadedData.name)
+                    filePathes.push(`${process.env.CDNADDRESS}/contents/` + uploadedData.name)
                     console.log( 'filePath', filePathes)
                 } catch (error) {
                     console.log(error)
